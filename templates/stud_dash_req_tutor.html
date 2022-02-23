@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.box{
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 30px;
+
+}
+
+.main_header{
+  width: 30%;
+  margin-left: 10px;
+
+}
+.table_header{
+  font-weight:bold;
+}
+
+a:link, a:visited {
+  float: right;
+  display: inline-block;
+  background-color: grey;
+  color: white;
+  margin-top: -5px;
+  margin-right: 5px;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  background-color: black;
+}
+
+.log:link, .log:visited{
+  background-color: white;
+  color: black;
+  float: right;
+  display: inline-block;
+  margin-top: -5px;
+  margin-right: 5px;
+  padding: 14px 10px;
+  text-align: center;
+  text-decoration: underline;
+
+}
+
+.log:hover, .log:active{
+  background-color: white;
+  color: blue;
+  text-decoration: underline;
+}
+
+h1{
+  display: inline;
+}
+h2{
+  font-size: large;
+  display: inline;
+}
+
+th{
+  font-weight: normal;
+}
+
+</style>
+</head>
+
+<body style="background-color: #76140c;">
+
+<div class = "box">
+  <h1 id = "main_header"> Welcome to SwaTutor{{username}}!</h1>
+  {% if username == "" or username == null%}
+    <a href = "/login" class = "log"><h2 class = "main_header">Login</h2></a>
+  {%else%}
+    <a href = "/logout" class = "log"><h2 class = "main_header">Logout</h2></a>
+  {%endif%}
+  <a href = "/stud/feedback"><h2 class = "main_header"> Feedback </h2></a>
+  <a href = "/stud/pending"><h2 class = "main_header"> Pending Requests </h2></a>
+  <a href = "/stud/reqtutor", style = "background-color: red"><h2 class = "main_header"> Request A Tutor </h2></a>
+</div>
+
+<div class = "box">
+  <!-- Need to have this be able to interact with database to actually add tutors on button click -->
+
+  <form id="tutorRequest" action="/tutorRequestProcessing" method="POST">
+
+  <label for="department">Select a Department:</label>
+
+    <select name="department" id="department">
+      <option value="" selected disabled hidden>Choose Department</option>
+      {%for dept in ['ARTD', 'BIOL', 'CHEM', 'CLAS', 'COGS', 'CPSC', 'ECON', 'EDUC', 'ENGL', 'ENGR', 'FMST', 'GLBL', 'HIST', 'LALS', 'LING', 'MATH', 'MLLD', 'MUSI', 'NDPT', 'PEAC', 'PHED', 'PHIL', 'PHYS', 'POLS', 'PSYC', 'RELG', 'SOAN', 'SPAN', 'THEA']%}
+      <!--<option value="CPSC">CPSC</option>
+      <option value="ENGR">ENGR</option>-->
+        <option value = {{dept}}>{{dept}}</option>
+      {%endfor%}
+    </select>
+
+    <br><br>
+
+    <label for="course">Select a Course:</label>
+
+      <select name="course" id="course">
+        <option value="" selected disabled hidden>Choose Course</option>
+      </select>
+
+
+    <input type="submit" value="Submit" >
+    <!-- <button type = "button" onclick = submitCourse()> Submit Request</button> -->
+
+  </form>
+
+    <p id = "response">{{feedback_return}}</p>
+
+</div>
+</body>
+
+<script>
+
+  function submitCourse(){
+    var deparment = document.getElementById("department");
+    var course = document.getElementById("course");
+    sendRequest(department, course);
+
+    document.getElementById("response").innerHTML = "Your Request</br>Department: " + deparment.value + "</br>Course: " + course.value + "</br>"
+
+  }
+
+  function sendRequest(department, course) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+
+       }
+    };
+    xhttp.open("GET", "/stud/reqtutor/department/" + departmentdata, true);
+    xhttp.send();
+  }
+
+  function onchange(e){
+    console.log(e.currentTarget.value);
+    sendData(e.currentTarget.value);
+  }
+
+  function sendData(departmentdata) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        console.log("Response Data: " + this.responseText);
+        document.getElementById("course").innerHTML = this.responseText;
+       }
+    };
+    xhttp.open("GET", "/stud/reqtutor/department/" + departmentdata, true);
+    xhttp.send();
+  }
+
+  document.getElementById('department').addEventListener('change',onchange);
+</script>
+</html>

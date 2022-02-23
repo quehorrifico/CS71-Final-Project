@@ -1,0 +1,44 @@
+PAGES:
+* Entry Page
+   * Functions as selection screen
+      * Department → Course → Tutor Count/Request Tutor
+   * Interm available resources (Stretch Goal, not to be prioritized)
+* Dashboards
+   * Student Side
+      * Outstanding/pending requests
+         * Where in the timeline are you?
+         * Requested → Pending → Completed
+      * Request tutor
+         * Returns to entry (selection) page
+      * Feedback
+         * About tutor
+         * Recommendations
+         * Request help
+   * Professor/Department Chair/Tutor Coordinator
+      * Similar to Admin Side (potentially reduced capability to just department)
+   * Admin Side - Who has access to this page/What does admin mean?
+      * All requests (Overview)
+         * Shows all requests and where they are in the completion process?
+         * Broken down by department or course if desired (Filters)
+      * All available tutors
+      * Add tutors (Add more about what this looks like)
+         * For specific classes and departments
+      * Feedback about tutors
+         * Is this for all tutors or only for the ones in their department?
+      * Ability to add resource information for specific courses (Stretch Goal)
+         * Ex. TA session times
+         * * Login/Sign Up (Build system ourselves)
+   * Sign Up - User information needed 
+      * First Name
+      * Last Name
+      * Password
+      * Email (Swarthmore emails only)
+         * Email confirmation system?
+      * Class year
+   * Login
+      * Email
+      * Password
+      * Remember Me/Keep me signed in
+   * Forgot Password? (What security risks exist here?)
+      * Reset password via email confirmation
+*

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.box{
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 30px;
+}
+
+.login_box{
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+.main_header{
+  width: 30%;
+  margin-left: 10px;
+
+}
+.table_header{
+  font-weight:bold;
+}
+
+a:link, a:visited {
+  float: right;
+  display: inline-block;
+  background-color: grey;
+  color: white;
+  margin-top: -5px;
+  margin-right: 5px;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  background-color: black;
+}
+
+h1{
+  display: inline;
+}
+h2{
+  font-size: large;
+  display: inline;
+}
+
+th{
+  font-weight: normal;
+}
+
+</style>
+</head>
+
+<body style="background-color: #76140c;">
+
+<div class = "box">
+  <h1 id = "main_header"> Welcome to SwaTutor! </h1>
+  &emsp;&emsp;&emsp;
+
+  <a href = "/stud/feedback"><h2 class = "main_header"> Feedback </h2></a>
+  <a href = "/stud/pending"><h2 class = "main_header"> Pending Requests </h2></a>
+  <a href = "/stud/reqtutor"><h2 class = "main_header"> Request A Tutor </h2></a>
+</div>
+
+<div class = "login_box" >
+  <!-- Idea for all available tutors, need to figure out how to populate this from database -->
+  <h2>Login</h2>
+  <br>
+
+  <p>{{login_failed}}</p>
+  <form id="login" action="/loggingIn" method="POST">
+    <label for="user_input"></label>
+    <input type="text" id="user_input" name="user_input" placeholder="Username"><br><br>
+    <label for="pass_input"></label>
+    <input type="password" id="pass_input" name="pass_input" placeholder="Password"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <br><hr><br>
+
+  <h2>Register</h2>
+  <br>
+  <p><span style="background-color: #FFCCCB">{{register_failed}}</span></p>
+  <p>Password must be a minimum 8 and maximum 20 characters, at least one uppercase letter,
+    one lowercase letter, one number and one special character:</p>
+  <form id="register" action="/registering" method="POST">
+    <label for="email_reg"></label>
+    <input type="text" id="email_reg" name="email_reg" placeholder="Email"><br><br>
+    <label for="user_reg"></label>
+    <input type="text" id="user_reg" name="user_reg" placeholder="Username"><br><br>
+    <label for="pass1_reg"></label>
+    <input type="password" id="pass1_reg" name="pass1_reg" placeholder="Password"><br><br>
+    <label for="pass2_reg"></label>
+    <input type="password" id="pass2_reg" name="pass2_reg" placeholder="Retype Password"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+</div>
+
+
+</body>
+</html>
